@@ -1,0 +1,19 @@
+.container {
+    display: grid;
+    gap: 5px;
+    /* text-align: center; */
+  }
+  
+  .box {
+    height: 115px;
+    overflow-y: auto;
+    border: 1px solid #ccc;
+    padding: 2px;
+  }
+  
+  .button-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  

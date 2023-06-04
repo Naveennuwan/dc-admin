@@ -1,0 +1,282 @@
+/*DevExtreme Customization Start*/
+
+.dx-link-edit {
+  text-decoration: none !important;
+  background-color: #4834d4;
+  color: white !important;
+  padding: 4px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 2px;
+  /* font-size: x-small; */
+}
+
+.dx-link-copy {
+  text-decoration: none !important;
+  background-color: #f0932b;
+  color: white !important;
+  padding: 4px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 2px;
+  /* font-size: x-small; */
+}
+
+.dx-link-delete {
+  text-decoration: none !important;
+  background-color: #eb4d4b;
+  color: white !important;
+  padding: 4px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 2px;
+  /* font-size: x-small; */
+}
+
+.dx-link-deposit {
+  text-decoration: none !important;
+  background-color: #30336b;
+  color: #f6e58d !important;
+  padding: 4px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 2px;
+}
+
+.dx-datagrid-text-content {
+  color: black;
+}
+
+a {
+  color: black !important;
+  text-decoration: none !important;
+}
+
+.dx-toolbar-text-auto-hide .dx-button .dx-button-text {
+  display: unset !important;
+  padding-left: 5px;
+}
+
+.dx-toolbar-text-auto-hide .dx-button {
+  background-color: #f6e58d;
+}
+.dx-toolbar-text-auto-hide .dx-button .dx-button-text {
+  color: #130f40;
+}
+
+.dx-popup-normal .dx-button-has-text[aria-label="保存"] {
+  background-color: rgb(108, 187, 60) !important;
+}
+.dx-popup-normal .dx-button-has-text[aria-label="Save"] {
+  background-color: rgb(108, 187, 60) !important;
+}
+
+.dx-popup-normal .dx-button-has-text[aria-label="クリア"] {
+  background-color: #dff9fb !important;
+}
+.dx-popup-normal .dx-button-has-text[aria-label="クリア"] .dx-button-text {
+  color: #130f40 !important;
+  font-size: medium;
+  font-weight: 500;
+}
+.dx-popup-normal .dx-button-has-text[aria-label="Clear"] {
+  background-color: #dff9fb !important;
+}
+.dx-popup-normal .dx-button-has-text[aria-label="Clear"] .dx-button-text {
+  color: #130f40 !important;
+  font-size: medium;
+  font-weight: 500;
+}
+
+.dx-popup-normal .dx-button-has-text[aria-label="削除する"] {
+  background-color: #ff7979 !important;
+}
+.dx-popup-normal .dx-button-has-text[aria-label="削除する"] .dx-button-text {
+  color: white !important;
+  font-size: medium;
+  font-weight: 500;
+}
+.dx-popup-normal .dx-button-has-text[aria-label="Yes"] {
+  background-color: #ff7979 !important;
+}
+
+
+.dx-popup-normal .dx-button-has-text[aria-label="キャンセル"] {
+  background-color: #eeeeee !important;
+}
+.dx-popup-normal .dx-button-has-text[aria-label="キャンセル"] .dx-button-text {
+  color: black !important;
+  font-size: medium;
+  font-weight: 500;
+}
+.dx-popup-normal .dx-button-has-text[aria-label="Cancel"] {
+  background-color: #eeeeee !important;
+}
+.dx-popup-normal .dx-button-has-text[aria-label="Cancel"] .dx-button-text {
+  color: black !important;
+  font-size: medium;
+  font-weight: 500;
+}
+
+.dx-button-mode-contained.dx-button-success[aria-label="リストに追加"] {
+  background-color: #686de0 !important;
+}
+
+.dx-button-mode-contained.dx-button-success[aria-label="納品書印刷 🖨️"] {
+  background-color: #be2edd !important;
+}
+.dx-button-mode-contained.dx-button-danger[aria-label="一括削除 🗑️"] {
+  background-color: #eb4d4b !important;
+}
+.dx-button-mode-contained.dx-button-default[aria-label="受注登録 💾"] {
+  background-color: #6ab04c !important;
+}
+
+.dx-button-has-text.dx-calendar-caption-button .dx-button-text {
+  color: #3068a4 !important;
+}
+
+.dx-button-mode-contained[aria-label="クリア"] {
+  background-color: #dff9fb;
+  border-color: #4c94c8;
+  border-width: 0.01rem;
+}
+.dx-button-normal.dx-button-has-text[aria-label="クリア"] .dx-button-text {
+  color: #130f40 !important;
+}
+
+
+.dx-button-text {
+  color: white;
+  font-size: medium;
+}
+
+.dx-popup-content {
+  overflow: auto !important;
+}
+
+.dx-checkbox-icon {
+  border: 1.5px solid rgb(99, 95, 95) !important;
+  width: 25px !important;
+  height: 25px !important;
+  font-size: 18px !important;
+}
+
+.dx-select-checkbox {
+  display: inline-block !important;
+}
+
+.dx-checkbox-icon::before {
+  width: 1em !important;
+  height: 1em !important;
+  margin-top: -0.5em !important;
+  margin-bottom: -0.5em !important;
+  font-size: 20px !important;
+  left: 50% !important;
+  right: 50% !important;
+}
+
+.dx-lookup-arrow {
+  transform: rotate(90deg) !important;
+  font-size: 26px !important;
+  margin-top: -4px !important;
+}
+
+.dx-datagrid-group-opened::before {
+  color: black !important;
+  font-size: 25px !important;
+}
+
+.dx-datagrid-group-closed::before {
+  color: black !important;
+  font-size: 25px !important;
+}
+.dx-button-text {
+  font-size: 19px !important;
+}
+
+.dx-scrollable-scroll {
+  width: 20px !important;
+}
+
+.dx-scrollable-scrollbar {
+  width: 20px !important;
+}
+
+.dx-scrollable-scroll-content {
+  background-color: rgba(191, 191, 191, 0.7) !important;
+  /* max-height: 150px !important; */
+}
+
+.dx-scrollbar-hoverable {
+  background-color: rgba(191, 191, 191, 0.2) !important;
+}
+
+.dx-scrollbar-horizontal .dx-scrollable-scroll {
+  background-color: rgba(191, 191, 191, 0.2) !important;
+  height: 20px !important;
+  width: 700px !important;
+}
+
+.dx-scrollbar-horizontal {
+  background-color: rgba(242, 240, 240, 0.7) !important;
+  height: 20px !important;
+  /* width: 150px !important; */
+}
+
+.dx-popup-title.dx-toolbar {
+  background-color: #4d4d4d;
+}
+
+.dx-popup-title.dx-toolbar.dx-toolbar-mini {
+  visibility: hidden;
+}
+
+.dx-datagrid-headers {
+  background-color: #4d4d4d;
+}
+
+.dx-datagrid-headers .dx-command-select.dx-editor-cell {
+  background-color: #4d4d4d;
+}
+.dx-datagrid-headers .dx-command-edit {
+  background-color: #4d4d4d;
+}
+
+.dx-datagrid-text-content {
+  color: #e6e6e6;
+}
+
+.dx-toolbar-before {
+  color: #e6e6e6;
+}
+
+.dx-button-mode-text .dx-icon {
+  color: #e6e6e6;
+}
+
+.dx-datagrid-content .dx-datagrid-table {
+  line-height: inherit !important;
+}
+
+.dx-widget {
+  font-size: 18px;
+}
+
+.dx-field-item-label-text {
+  font-size: 18px;
+}
+
+.dx-dialog-message {
+  padding: 0;
+  font-size: 18px !important;
+}
+
+/* .dx-placeholder[data-dx_placeholder="6文字以上10文字以下で入力してください"] {
+color: #eb4d4b;
+} */
+
+/* .dx-popup-draggable .dx-popup-title {
+  visibility: hidden !important;
+} */
+/*DevExtreme Customization End*/

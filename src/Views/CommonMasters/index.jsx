@@ -5,7 +5,7 @@ import Box from "@mui/material/Box";
 import { styled } from "@mui/material/styles";
 import { Container } from "@mui/system";
 import { Link } from "react-router-dom";
-import {  useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 const Item = styled(Paper)(({ theme }) => ({
   ...theme.typography.body2,
@@ -18,13 +18,14 @@ const Item = styled(Paper)(({ theme }) => ({
 
 function Master() {
   const routes = [
-    // { id: 1, name: "Doctors", path: "doctor" },
-    { id: 2, name: "Brands", path: "brand" },
-    { id: 3, name: "Categories", path: "category" },
-    { id: 4, name: "Suppliers", path: "supplier" },
-    { id: 5, name: "Drugs", path: "drug" },
-    { id: 6, name: "MasterData", path: "masterdata" },
-    // {id:6,  name: "Custom", path: "pointinput" },
+    { id: 1, name: "Brands", path: "brand" },
+    { id: 2, name: "Categories", path: "category" },
+    { id: 3, name: "Suppliers", path: "supplier" },
+    { id: 4, name: "Drugs", path: "drug" },
+  ];
+  const adminRoutes = [
+    { id: 1, name: "Doctors", path: "doctors" },
+    { id: 2, name: "Master Data", path: "masterdata" },
   ];
 
   const { userInfo } = useSelector((state) => state.userLogin);
@@ -44,16 +45,22 @@ function Master() {
           >
             {userInfo.user.user_type === 1 && (
               <>
-                <Link to={`/doctor`} style={{ textDecoration: "none" }}>
-                  <Item
-                    elevation={8}
-                    sx={{
-                      m: 1,
-                    }}
+                {adminRoutes.map((route) => (
+                  <Link
+                    key={route.id}
+                    to={`/${route.path}`}
+                    style={{ textDecoration: "none" }}
                   >
-                    <h1>Doctors</h1>
-                  </Item>
-                </Link>
+                    <Item
+                      elevation={8}
+                      sx={{
+                        m: 1,
+                      }}
+                    >
+                      <h1>{route.name}</h1>
+                    </Item>
+                  </Link>
+                ))}
               </>
             )}
             {routes.map((route) => (

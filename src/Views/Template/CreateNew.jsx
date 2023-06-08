@@ -25,6 +25,7 @@ const CreateNew = ({ templateId }) => {
   const [body, setBody] = useState([]);
 
   const { Drug } = useSelector((state) => state.DrugActive);
+  
   const { TreatementType } = useSelector((state) => state.TreatementType);
 
   const { success: regsuccess } = useSelector(

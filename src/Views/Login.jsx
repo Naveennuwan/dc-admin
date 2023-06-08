@@ -7,7 +7,6 @@ import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
@@ -16,10 +15,6 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { GetCenters } from "../Redux/CenterRedux/CenterActions";
 import { login } from "../Redux/UserRedux/UserActions";
-import { Error } from "../Components/ToastNotification";
-import { USER_LOGIN_FAIL } from "../Redux/UserRedux/UserConstant";
-
-const theme = createTheme();
 
 export default function SignIn() {
   const dispatch = useDispatch();
@@ -58,7 +53,6 @@ export default function SignIn() {
   };
 
   return (
-    <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box
@@ -125,6 +119,5 @@ export default function SignIn() {
           </Box>
         </Box>
       </Container>
-    </ThemeProvider>
   );
 }

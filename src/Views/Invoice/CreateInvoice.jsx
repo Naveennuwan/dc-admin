@@ -15,7 +15,6 @@ import {
   InvoiceRegister,
   InvoiceDetails,
 } from "../../Redux/InvoiceRedux/InvoiceActions";
-import { parseNumber } from "devextreme/localization";
 
 const style = {
   position: "absolute",
@@ -41,8 +40,6 @@ const CreateInvoice = ({ items, setItems }) => {
   const { total, discount } = useSelector((state) => state.InvoiceDetils);
 
   const user = JSON.parse(localStorage.getItem("userInfo"));
-
-
 
   const dataSource = new CustomStore({
     key: "id",

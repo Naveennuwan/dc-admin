@@ -24,7 +24,6 @@ function DefaultLayout() {
   const openLogout = Boolean(logoutDropDown);
 
   const { userInfo } = useSelector((state) => state.userLogin);
-  // const { routeInfo } = useSelector((state) => state.route);
   let navigate = useNavigate();
 
   const handleLogoutMenuClick = (event) => {
@@ -39,7 +38,7 @@ function DefaultLayout() {
     if (!userInfo) {
       navigate("/");
     }
-  }, [userInfo]);
+  }, [userInfo, navigate]);
   return (
     <>
       <Box sx={{ flexGrow: 1 }}>
@@ -65,7 +64,7 @@ function DefaultLayout() {
               </Typography>
               <Typography
                 variant="h6"
-                // className={`${routeInfo ? "appbar__header__pagename" : ""}`}
+              // className={`${routeInfo ? "appbar__header__pagename" : ""}`}
               >
                 {/* {routeInfo ? `${routeInfo}` : " "} */}
               </Typography>
@@ -77,14 +76,14 @@ function DefaultLayout() {
                   mr: 5,
                 }}
               >
-                  <Button
-                    id="basic-button"
-                    style={{ color: "black", fontSize: "1rem" }}
-                  >
-                    <Link to="/master" style={{ textDecoration: "none" }}>
-                      Master Management
-                    </Link>
-                  </Button>
+                <Button
+                  id="basic-button"
+                  style={{ color: "black", fontSize: "1rem" }}
+                >
+                  <Link to="/master" style={{ textDecoration: "none" }}>
+                    Master Management
+                  </Link>
+                </Button>
               </Box>
 
               <Avatar

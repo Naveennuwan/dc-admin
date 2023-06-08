@@ -36,7 +36,6 @@ const TemplateTable = ({ setTemplateId }) => {
 
   useEffect(() => {
     dispatch(TreatementActiveList());
-    // console.log(Treatement)
   }, [dispatch, successDelete]);
   return (
     <>

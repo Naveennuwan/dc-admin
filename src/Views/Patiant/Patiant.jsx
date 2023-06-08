@@ -17,13 +17,11 @@ import { Item } from "devextreme-react/form";
 import { SetRoute } from "../../Redux/RouteRedux/RouteActions";
 import { pageSizes } from "../../Data/PaginiationData.js";
 import CustomStore from "devextreme/data/custom_store";
-import { Link } from "react-router-dom";
 import {
   PatientAction,
   PatientRegister,
   PatientDelete,
   PatientUpdate,
-  PatientDetails,
 } from "../../Redux/PatientRedux/PatientActions";
 import { PatientTypeAction } from "../../Redux/PatientTypeRedux/PatientTypeActions";
 
@@ -85,7 +83,6 @@ function Patient() {
               patient_address: data.patient_address,
               patient_contact_no: data.patient_contact_no,
               patient_type_id: data.patient_type_id,
-              is_active: data.is_active,
               is_active: !data.is_active,
             })
           )
@@ -96,15 +93,15 @@ function Patient() {
     );
   };
 
-  const HistoryButton = ({ data }) => {
-    return (
-      <Link href={`/history/${data.id}`}>
-        <Button variant="contained" color="success" sx={{ minWidth: 100 }}>
-          View
-        </Button>
-      </Link>
-    );
-  };
+  // const HistoryButton = ({ data }) => {
+  //   return (
+  //     <Link href={`/history/${data.id}`}>
+  //       <Button variant="contained" color="success" sx={{ minWidth: 100 }}>
+  //         View
+  //       </Button>
+  //     </Link>
+  //   );
+  // };
 
   useEffect(() => {
     dispatch(PatientAction());
@@ -115,10 +112,8 @@ function Patient() {
   return (
     <PageComponent title="Patient List">
       <Container>
-        {/* <div style={{ display: "flex" }}> */}
           <DataGrid
             dataSource={dataSource}
-            // keyExpr="id"
             showBorders={true}
             className="datagrid__max h-auto"
             allowColumnReordering={true}
@@ -151,7 +146,6 @@ function Patient() {
               />
               <Form>
                 <Item itemType="group" colSpan={2}>
-                  {/* <Item dataField="id" /> */}
                   <Item dataField="patient_name" />
                   <Item dataField="patient_incharge" />
                   <Item dataField="patient_address" />
@@ -210,7 +204,6 @@ function Patient() {
               caption="Display"
               cellRender={renderButton}
             />
-            {/* <Column caption="History" cellRender={HistoryButton} /> */}
             <Pager
               allowedPageSizes={pageSizes}
               visible={true}
@@ -220,7 +213,6 @@ function Patient() {
             />
             <Paging defaultPageSize={25} />
           </DataGrid>
-        {/* </div> */}
       </Container>
     </PageComponent>
   );

@@ -16,13 +16,11 @@ import { Item } from "devextreme-react/form";
 import { SetRoute } from "../../Redux/RouteRedux/RouteActions";
 import { pageSizes } from "../../Data/PaginiationData.js";
 import CustomStore from "devextreme/data/custom_store";
-import { category } from "../../Data/Data";
 import {
   CategoryList,
   CategoryRegister,
   CategoryDelete,
   CategoryUpdate,
-  CategoryDetails,
 } from "../../Redux/CategoryRedux/CategoryActions";
 
 function Category() {
@@ -91,7 +89,6 @@ function Category() {
         <div style={{ display: "flex" }}>
           <DataGrid
             dataSource={dataSource}
-            // keyExpr="id"
             showBorders={true}
             className="datagrid__max h-auto"
             allowColumnReordering={true}
@@ -124,7 +121,6 @@ function Category() {
               />
               <Form>
                 <Item itemType="group" colSpan={2}>
-                  {/* <Item dataField="id" /> */}
                   <Item dataField="category" />
                   <Item dataField="is_active" />
                 </Item>

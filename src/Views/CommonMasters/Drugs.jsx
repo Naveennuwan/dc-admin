@@ -111,7 +111,6 @@ function Drug() {
         <div style={{ display: "flex" }}>
           <DataGrid
             dataSource={dataSource}
-            // keyExpr="id"
             showBorders={true}
             className="datagrid__max h-auto"
             allowColumnReordering={true}
@@ -139,7 +138,6 @@ function Drug() {
               <Popup title="Drug" showTitle={true} width={400} height={510} />
               <Form>
                 <Item itemType="group" colSpan={2}>
-                  {/* <Item dataField="id" /> */}
                   <Item dataField="product" />
                   <Item dataField="brand_id" />
                   <Item dataField="category_id" />

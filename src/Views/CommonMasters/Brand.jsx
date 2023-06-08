@@ -21,7 +21,6 @@ import {
   BrandRegister,
   BrandDelete,
   BrandUpdate,
-  BrandDetails,
 } from "../../Redux/BrandRedux/BrandActions";
 
 function Brand() {

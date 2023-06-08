@@ -5,18 +5,14 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
-import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import { PatientAction } from "../../Redux/PatientRedux/PatientActions";
 import axios from "axios";
 
-import * as api from "../../Redux/api";
-
 const SMS = () => {
   const dispatch = useDispatch();
   const { Patient } = useSelector((state) => state.Patient);
-  const [patient, setPatient] = useState("0705742090");
   const [text, SetText] = useState(null);
 
   async function handleChange(e) {
@@ -29,7 +25,6 @@ const SMS = () => {
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
         "Access-Control-Allow-Credentials": "true",
-        "Access-Control-Allow-Headers": "content-type",
         "Access-Control-Allow-Headers":
           "Origin, Content-Type, Accept, Authorization, X-Request-With",
       },
@@ -63,9 +58,6 @@ const SMS = () => {
             labelId="demo-simple-select-label"
             id="demo-simple-select"
             fullWidth
-            // onChange={(e) => {
-            //   setPatient(e.target.value);
-            // }}
           >
             {Patient.filter((p) => p.patient_type_id === 2).map((p) => (
               <MenuItem value={p.patient_contact_no} key={p.id}>

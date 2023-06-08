@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import PageComponent from "../../Components/PageComponent";
 import { Container } from "@mui/system";
-import Button from "@mui/material/Button";
 import DataGrid, {
   Column,
   Editing,
@@ -25,10 +25,13 @@ import { GetCenters } from "../../Redux/CenterRedux/CenterActions";
 
 function MasterData() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const { Master } = useSelector((state) => state.Master);
 
   const { centers } = useSelector((state) => state.Center);
+
+  const { userInfo } = useSelector((state) => state.userLogin);
 
   const { success: successUpdate } = useSelector((state) => state.MasterUpdate);
 
@@ -52,6 +55,12 @@ function MasterData() {
     dispatch(GetCenters());
     dispatch(SetRoute("Master Data"));
   }, [dispatch, successUpdate]);
+
+  useEffect(() => {
+    if (userInfo.user.user_type !== 1) {
+      navigate("/master");
+    }
+  }, [userInfo, navigate]);
 
   return (
     <PageComponent title="Brand List">

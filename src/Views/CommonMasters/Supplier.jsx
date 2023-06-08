@@ -21,7 +21,6 @@ import {
   SupplierRegister,
   SupplierDelete,
   SupplierUpdate,
-  SupplierDetails,
 } from "../../Redux/SupplierRedux/SupplierActions";
 
 function Supplier() {
@@ -99,7 +98,6 @@ function Supplier() {
         <div style={{ display: "flex" }}>
           <DataGrid
             dataSource={dataSource}
-            // keyExpr="id"
             showBorders={true}
             className="datagrid__max h-auto"
             allowColumnReordering={true}
@@ -132,7 +130,6 @@ function Supplier() {
               />
               <Form>
                 <Item itemType="group" colSpan={2}>
-                  {/* <Item dataField="id" /> */}
                   <Item dataField="supplier" />
                   <Item dataField="supplier_contact" />
                   <Item dataField="is_active" />

@@ -15,9 +15,6 @@ import {
   BRAND_UPDATE_SUCCESS,
   BRAND_UPDATE_FAIL,
   BRAND_UPDATE_RESET,
-  BRAND_DETAILS_REQUEST,
-  BRAND_DETAILS_SUCCESS,
-  BRAND_DETAILS_FAIL,
 } from "./BrandConstants";
 
 export const BrandReducer = (state = { Brand: [] }, action) => {
@@ -82,19 +79,6 @@ export const BrandUpdateReducer = (state = { Brand: {} }, action) => {
       return { loading: false, error: action.payload };
     case BRAND_UPDATE_RESET:
       return { Brand: {} };
-    default:
-      return state;
-  }
-};
-
-export const BrandDetailsReducer = (state = { Brand: {} }, action) => {
-  switch (action.type) {
-    case BRAND_DETAILS_REQUEST:
-      return { loading: true, ...state };
-    case BRAND_DETAILS_SUCCESS:
-      return { loading: false, job: action.payload };
-    case BRAND_DETAILS_FAIL:
-      return { loading: false, error: action.payload };
     default:
       return state;
   }

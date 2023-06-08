@@ -15,9 +15,6 @@ import {
   SUPPLIER_UPDATE_SUCCESS,
   SUPPLIER_UPDATE_FAIL,
   SUPPLIER_UPDATE_RESET,
-  SUPPLIER_DETAILS_REQUEST,
-  SUPPLIER_DETAILS_SUCCESS,
-  SUPPLIER_DETAILS_FAIL,
 } from "./SupplierConstants";
 
 export const SupplierReducer = (state = { Supplier: [] }, action) => {
@@ -82,19 +79,6 @@ export const SupplierUpdateReducer = (state = { Supplier: {} }, action) => {
       return { loading: false, error: action.payload };
     case SUPPLIER_UPDATE_RESET:
       return { Supplier: {} };
-    default:
-      return state;
-  }
-};
-
-export const SupplierDetailsReducer = (state = { Supplier: {} }, action) => {
-  switch (action.type) {
-    case SUPPLIER_DETAILS_REQUEST:
-      return { loading: true, ...state };
-    case SUPPLIER_DETAILS_SUCCESS:
-      return { loading: false, Supplier: action.payload };
-    case SUPPLIER_DETAILS_FAIL:
-      return { loading: false, error: action.payload };
     default:
       return state;
   }

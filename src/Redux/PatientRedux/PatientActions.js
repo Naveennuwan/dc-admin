@@ -14,9 +14,6 @@ import {
   PATIANT_UPDATE_REQUEST,
   PATIANT_UPDATE_SUCCESS,
   PATIANT_UPDATE_FAIL,
-  PATIANT_DETAILS_REQUEST,
-  PATIANT_DETAILS_SUCCESS,
-  PATIANT_DETAILS_FAIL,
 } from "./PatientConstants";
 
 import * as api from "../api";
@@ -123,27 +120,6 @@ export const PatientUpdate = (id, Patient) => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: PATIANT_UPDATE_FAIL,
-      payload:
-        error.response && error.response.data.message
-          ? error.response.data.message
-          : error.message,
-    });
-  }
-};
-
-export const PatientDetails = (id) => async (dispatch) => {
-  try {
-    dispatch({ type: PATIANT_DETAILS_REQUEST });
-
-    const { data } = await api.PatientDeleteAPI(id);
-    
-    dispatch({
-      type: PATIANT_DETAILS_SUCCESS,
-      payload: data,
-    });
-  } catch (error) {
-    dispatch({
-      type: PATIANT_DETAILS_FAIL,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message

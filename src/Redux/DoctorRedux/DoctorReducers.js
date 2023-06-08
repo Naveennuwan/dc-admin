@@ -12,9 +12,6 @@ import {
   DOCTOR_UPDATE_SUCCESS,
   DOCTOR_UPDATE_RESET,
   DOCTOR_UPDATE_FAIL,
-  DOCTOR_DETAILS_REQUEST,
-  DOCTOR_DETAILS_SUCCESS,
-  DOCTOR_DETAILS_FAIL,
 } from "./DoctorConstants";
 
 export const DoctorReducer = (state = { Doctor: [] }, action) => {
@@ -66,19 +63,6 @@ export const DoctorUpdateReducer = (state = { Doctor: {} }, action) => {
       return { loading: false, error: action.payload };
     case DOCTOR_UPDATE_RESET:
       return { Doctor: {} };
-    default:
-      return state;
-  }
-};
-
-export const DoctorDetailsReducer = (state = { Doctor: {} }, action) => {
-  switch (action.type) {
-    case DOCTOR_DETAILS_REQUEST:
-      return { loading: true, ...state };
-    case DOCTOR_DETAILS_SUCCESS:
-      return { loading: false, Doctor: action.payload };
-    case DOCTOR_DETAILS_FAIL:
-      return { loading: false, error: action.payload };
     default:
       return state;
   }

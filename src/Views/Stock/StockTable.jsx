@@ -1,8 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { pageSizes } from "../../Data/PaginiationData.js";
-import CustomStore from "devextreme/data/custom_store";
-import { stock } from "../../Data/Data";
 import DataGrid, {
   Column,
   Paging,

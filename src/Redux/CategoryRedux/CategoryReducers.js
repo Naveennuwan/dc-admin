@@ -15,9 +15,6 @@ import {
   CATEGORY_UPDATE_SUCCESS,
   CATEGORY_UPDATE_FAIL,
   CATEGORY_UPDATE_RESET,
-  CATEGORY_DETAILS_REQUEST,
-  CATEGORY_DETAILS_SUCCESS,
-  CATEGORY_DETAILS_FAIL,
 } from "./CategoryConstants";
 
 export const CategoryReducer = (
@@ -94,22 +91,6 @@ export const CategoryUpdateReducer = (
       return { loading: false, error: action.payload };
     case CATEGORY_UPDATE_RESET:
       return { Category: {} };
-    default:
-      return state;
-  }
-};
-
-export const CategoryDetailsReducer = (
-  state = { Category: {} },
-  action
-) => {
-  switch (action.type) {
-    case CATEGORY_DETAILS_REQUEST:
-      return { loading: true, ...state };
-    case CATEGORY_DETAILS_SUCCESS:
-      return { loading: false, Category: action.payload };
-    case CATEGORY_DETAILS_FAIL:
-      return { loading: false, error: action.payload };
     default:
       return state;
   }

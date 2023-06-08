@@ -14,9 +14,6 @@ import {
   CATEGORY_UPDATE_REQUEST,
   CATEGORY_UPDATE_SUCCESS,
   CATEGORY_UPDATE_FAIL,
-  CATEGORY_DETAILS_REQUEST,
-  CATEGORY_DETAILS_SUCCESS,
-  CATEGORY_DETAILS_FAIL,
 } from "./CategoryConstants";
 
 import * as api from "../api";
@@ -124,25 +121,6 @@ export const CategoryUpdate = (id, job_type) => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: CATEGORY_UPDATE_FAIL,
-      payload:
-        error.response && error.response.data.message
-          ? error.response.data.message
-          : error.message,
-    });
-  }
-};
-
-export const CategoryDetails = (id) => async (dispatch) => {
-  try {
-    dispatch({ type: CATEGORY_DETAILS_REQUEST });
-    const { data } = await api.CategoryDetailsAPI(id);
-    dispatch({
-      type: CATEGORY_DETAILS_SUCCESS,
-      payload: data,
-    });
-  } catch (error) {
-    dispatch({
-      type: CATEGORY_DETAILS_FAIL,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message

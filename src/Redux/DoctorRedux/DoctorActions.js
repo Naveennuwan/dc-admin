@@ -11,9 +11,6 @@ import {
   DOCTOR_UPDATE_REQUEST,
   DOCTOR_UPDATE_SUCCESS,
   DOCTOR_UPDATE_FAIL,
-  DOCTOR_DETAILS_REQUEST,
-  DOCTOR_DETAILS_SUCCESS,
-  DOCTOR_DETAILS_FAIL,
 } from "./DoctorConstants";
 
 import * as api from "../api";
@@ -108,24 +105,3 @@ export const DoctorUpdate = (id,Information) => async (dispatch) => {
     });
   }
 };
-
-export const DoctorDetails = (id) => async (dispatch) => {
-  try {
-    dispatch({ type: DOCTOR_DETAILS_REQUEST })
-
-    const { data } = await api.DoctorDetailsAPI(id);
-    
-    dispatch({
-      type: DOCTOR_DETAILS_SUCCESS,
-      payload: data,
-    })
-  } catch (error) {
-    dispatch({
-      type: DOCTOR_DETAILS_FAIL,
-      payload:
-        error.response && error.response.data.message
-          ? error.response.data.message
-          : error.message,
-    })
-  }
-}

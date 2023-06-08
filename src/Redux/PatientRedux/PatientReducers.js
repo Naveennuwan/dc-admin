@@ -15,9 +15,6 @@ import {
   PATIANT_UPDATE_SUCCESS,
   PATIANT_UPDATE_FAIL,
   PATIANT_UPDATE_RESET,
-  PATIANT_DETAILS_REQUEST,
-  PATIANT_DETAILS_SUCCESS,
-  PATIANT_DETAILS_FAIL,
 } from "./PatientConstants";
 
 export const PatientReducer = (state = { Patient: [] }, action) => {
@@ -89,19 +86,6 @@ export const PatientUpdateReducer = (state = { Patient: {} }, action) => {
       return { loading: false, error: action.payload };
     case PATIANT_UPDATE_RESET:
       return { Patient: {} };
-    default:
-      return state;
-  }
-};
-
-export const PatientDetailsReducer = (state = { Patient: {} }, action) => {
-  switch (action.type) {
-    case PATIANT_DETAILS_REQUEST:
-      return { loading: true, ...state };
-    case PATIANT_DETAILS_SUCCESS:
-      return { loading: false, Patient: action.payload };
-    case PATIANT_DETAILS_FAIL:
-      return { loading: false, error: action.payload };
     default:
       return state;
   }

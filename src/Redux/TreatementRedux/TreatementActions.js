@@ -14,9 +14,6 @@ import {
   TREATEMENT_DELETE_FAIL,
   TREATEMENT_UPDATE_REQUEST,
   TREATEMENT_UPDATE_SUCCESS,
-  TREATEMENT_DETAILS_REQUEST,
-  TREATEMENT_DETAILS_SUCCESS,
-  TREATEMENT_DETAILS_FAIL,
 } from "./TreatementConstants";
 import * as api from "../api";
 
@@ -118,33 +115,12 @@ export const TreatementUpdate = (id, Treatement) => async (dispatch) => {
       type: TREATEMENT_UPDATE_REQUEST,
     });
 
-    const { data } = await api.TreatementUpdateAPI(id, Treatement);
+    await api.TreatementUpdateAPI(id, Treatement);
 
     dispatch({
       type: TREATEMENT_UPDATE_SUCCESS,
     });
   } catch (error) {
     throw error;
-  }
-};
-
-export const TreatementDetails = (id) => async (dispatch) => {
-  try {
-    dispatch({ type: TREATEMENT_DETAILS_REQUEST });
-
-    const { data } = await api.TreatementDetailsAPI(id);
-
-    dispatch({
-      type: TREATEMENT_DETAILS_SUCCESS,
-      payload: data,
-    });
-  } catch (error) {
-    dispatch({
-      type: TREATEMENT_DETAILS_FAIL,
-      payload:
-        error.response && error.response.data.message
-          ? error.response.data.message
-          : error.message,
-    });
   }
 };

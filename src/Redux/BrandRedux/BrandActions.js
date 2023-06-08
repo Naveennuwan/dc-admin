@@ -14,10 +14,6 @@ import {
   BRAND_UPDATE_REQUEST,
   BRAND_UPDATE_SUCCESS,
   BRAND_UPDATE_FAIL,
-  BRAND_UPDATE_RESET,
-  BRAND_DETAILS_REQUEST,
-  BRAND_DETAILS_SUCCESS,
-  BRAND_DETAILS_FAIL,
 } from "./BrandConstants";
 
 import * as api from "../api";
@@ -124,27 +120,6 @@ export const BrandUpdate = (id, Brand) => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: BRAND_UPDATE_FAIL,
-      payload:
-        error.response && error.response.data.message
-          ? error.response.data.message
-          : error.message,
-    });
-  }
-};
-
-export const BrandDetails = (id) => async (dispatch) => {
-  try {
-    dispatch({ type: BRAND_DETAILS_REQUEST });
-
-    const { data } = await api.BrandDetailsAPI(id);
-
-    dispatch({
-      type: BRAND_DETAILS_SUCCESS,
-      payload: data,
-    });
-  } catch (error) {
-    dispatch({
-      type: BRAND_DETAILS_FAIL,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message

@@ -11,7 +11,6 @@ import { TreatementTypeReducer } from "../Redux/TreatementTypeRedux/TreatementTy
 import {
   BrandReducer,
   BrandActiveReducer,
-  BrandDetailsReducer,
   BrandRegisterReducer,
   BrandUpdateReducer,
   BrandDeleteReducer,
@@ -19,7 +18,6 @@ import {
 import {
   CategoryReducer,
   CategoryActiveReducer,
-  CategoryDetailsReducer,
   CategoryRegisterReducer,
   CategoryUpdateReducer,
   CategoryDeleteReducer,
@@ -27,7 +25,6 @@ import {
 import {
   SupplierReducer,
   SupplierActiveReducer,
-  SupplierDetailsReducer,
   SupplierRegisterReducer,
   SupplierUpdateReducer,
   SupplierDeleteReducer,
@@ -44,7 +41,6 @@ import {
   PatientReducer,
   PatientActiveReducer,
   PatientRegisterReducer,
-  PatientDetailsReducer,
   PatientUpdateReducer,
   PatientDeleteReducer,
 } from "./PatientRedux/PatientReducers";
@@ -76,7 +72,6 @@ const reducer = combineReducers({
   //Brand
   Brand: BrandReducer,
   BrandActive: BrandActiveReducer,
-  BrandDetails: BrandDetailsReducer,
   BrandRegister: BrandRegisterReducer,
   BrandUpdate: BrandUpdateReducer,
   BrandDelete: BrandDeleteReducer,
@@ -84,7 +79,6 @@ const reducer = combineReducers({
   //Category
   Category: CategoryReducer,
   CategoryActive: CategoryActiveReducer,
-  CategoryDetails: CategoryDetailsReducer,
   CategoryRegister: CategoryRegisterReducer,
   CategoryUpdate: CategoryUpdateReducer,
   CategoryDelete: CategoryDeleteReducer,
@@ -92,7 +86,6 @@ const reducer = combineReducers({
   //Supplier
   Supplier: SupplierReducer,
   SupplierActive: SupplierActiveReducer,
-  SupplierDetails: SupplierDetailsReducer,
   SupplierRegister: SupplierRegisterReducer,
   SupplierUpdate: SupplierUpdateReducer,
   SupplierDelete: SupplierDeleteReducer,
@@ -110,7 +103,6 @@ const reducer = combineReducers({
   //Patient
   Patient: PatientReducer,
   PatientActive: PatientActiveReducer,
-  PatientDetails: PatientDetailsReducer,
   PatientRegister: PatientRegisterReducer,
   PatientUpdate: PatientUpdateReducer,
   PatientDelete: PatientDeleteReducer,
@@ -118,7 +110,6 @@ const reducer = combineReducers({
   //Patient
   Treatement: TreatementListReducer,
   TreatementActive: TreatementActiveListReducer,
-  TreatementDetails: PatientDetailsReducer,
   TreatementRegister: TreatementRegisterReducer,
   TreatementUpdate: TreatementUpdateReducer,
   TreatementDelete: TreatementDeleteReducer,
@@ -138,6 +129,7 @@ const reducer = combineReducers({
   // Router
   route: RouteReducer,
 });
+
 const userInfoFromStorage = localStorage.getItem("userInfo")
   ? JSON.parse(localStorage.getItem("userInfo"))
   : null;

@@ -16,9 +16,6 @@ import {
   TREATEMENT_UPDATE_SUCCESS,
   TREATEMENT_UPDATE_FAIL,
   TREATEMENT_UPDATE_RESET,
-  TREATEMENT_DETAILS_REQUEST,
-  TREATEMENT_DETAILS_SUCCESS,
-  TREATEMENT_DETAILS_FAIL,
 } from "./TreatementConstants";
 
 export const TreatementListReducer = (state = { Treatement: [] }, action) => {
@@ -91,19 +88,6 @@ export const TreatementUpdateReducer = (
       return { loading: false, error: action.payload };
     case TREATEMENT_UPDATE_RESET:
       return { Treatement: {} };
-    default:
-      return state;
-  }
-};
-
-export const TreatementDetailsReducer = (state = { Treatement: {} }, action) => {
-  switch (action.type) {
-    case TREATEMENT_DETAILS_REQUEST:
-      return { loading: true, ...state };
-    case TREATEMENT_DETAILS_SUCCESS:
-      return { loading: false, Treatement: action.payload };
-    case TREATEMENT_DETAILS_FAIL:
-      return { loading: false, error: action.payload };
     default:
       return state;
   }

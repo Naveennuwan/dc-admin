@@ -15,9 +15,6 @@ import {
   SUPPLIER_UPDATE_REQUEST,
   SUPPLIER_UPDATE_SUCCESS,
   SUPPLIER_UPDATE_FAIL,
-  SUPPLIER_DETAILS_REQUEST,
-  SUPPLIER_DETAILS_SUCCESS,
-  SUPPLIER_DETAILS_FAIL,
 } from "./SupplierConstants";
 import * as api from "../api";
 
@@ -68,16 +65,19 @@ export const SupplierRegister = (SUPPLIER) => async (dispatch) => {
     });
 
     const { data } = await api.SupplierRegisterAPI(SUPPLIER);
-    if (data.error === "Particular Condition Name Exists") {
-      throw "Particular Condition Name is already exists";
-    } else {
-      dispatch({
-        type: SUPPLIER_REGISTER_SUCCESS,
-        payload: data,
-      });
-    }
+
+    dispatch({
+      type: SUPPLIER_REGISTER_SUCCESS,
+      payload: data,
+    });
   } catch (error) {
-    throw error;
+    dispatch({
+      type: SUPPLIER_REGISTER_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
   }
 };
 
@@ -114,7 +114,7 @@ export const SupplierUpdate = (id, Supplier) => async (dispatch) => {
     dispatch({
       type: SUPPLIER_UPDATE_REQUEST,
     });
-    const { data, status } = await api.SupplierUpdateAPI(id, Supplier);
+    const { status } = await api.SupplierUpdateAPI(id, Supplier);
 
     if (status === 200) {
       dispatch({
@@ -132,21 +132,3 @@ export const SupplierUpdate = (id, Supplier) => async (dispatch) => {
   }
 };
 
-export const SupplierDetails = (id) => async (dispatch) => {
-  try {
-    dispatch({ type: SUPPLIER_DETAILS_REQUEST });
-    const { data } = await api.SupplierDetailsAPI(id);
-    dispatch({
-      type: SUPPLIER_DETAILS_SUCCESS,
-      payload: data,
-    });
-  } catch (error) {
-    dispatch({
-      type: SUPPLIER_DETAILS_FAIL,
-      payload:
-        error.response && error.response.data.message
-          ? error.response.data.message
-          : error.message,
-    });
-  }
-};

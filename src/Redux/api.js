@@ -1,6 +1,7 @@
 import axios from "axios";
 
-const baseUrl = "http://127.0.0.1:8000/api";
+const baseUrl = "https://api.dental-clinic.lk/api";
+// const baseUrl = "http://127.0.0.1:8000/api";
 
 const sms = "https://www.textit.biz";
 
@@ -42,7 +43,7 @@ API.interceptors.response.use(
   }
 );
 
-const centerid = JSON.parse(localStorage.getItem("userInfo")).center;
+const centerid = JSON.parse(localStorage.getItem("userInfo"))?.center ?? [];
 
 //-------------------------------------------------------------
 // Data APIs
@@ -183,15 +184,15 @@ export const StockRegisterAPI = (stock) => API.post("/stock", stock);
 
 export const MasterAPI = () => API.get("/master");
 
-export const MasterUpdateAPI = (id, master) =>
-  API.put(`/master/${id}`, master);
+export const MasterUpdateAPI = (id, master) => API.put(`/master/${id}`, master);
 
 //-------------------------------------------------------------
 // Invoice
 
 export const InvoiceRegisterAPI = (invoice) => API.post("/invoice", invoice);
 
-export const InvoiceDetailsAPI = (invoice) => API.post("/invoice/calculate", invoice);
+export const InvoiceDetailsAPI = (invoice) =>
+  API.post("/invoice/calculate", invoice);
 
 const id = "94705742090";
 const pw = "5713";

@@ -155,6 +155,13 @@ const CreateInvoice = ({ items, setItems }) => {
             caption="Treatement Name"
             width="maxWidth"
           />
+          
+          <Column
+            dataField="quantity"
+            dataType="number"
+            caption="Quantity"
+            width="maxWidth"
+          />
         </DataGrid>
       </div>
 

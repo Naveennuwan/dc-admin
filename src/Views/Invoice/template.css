@@ -1,7 +1,6 @@
 .container {
     display: grid;
     gap: 5px;
-    /* text-align: center; */
   }
   
   .box {
@@ -16,4 +15,3 @@
     flex-wrap: wrap;
     gap: 10px;
   }
-  

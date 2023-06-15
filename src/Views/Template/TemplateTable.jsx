@@ -56,10 +56,10 @@ const TemplateTable = ({ setTemplateId }) => {
         >
           <Paging enabled={false} />
           <Editing
-            refreshMode="reshape"
-            mode="popup"
-            useIcons={false}
-            allowUpdating={true}
+            // refreshMode="reshape"
+            // mode="popup"
+            // useIcons={false}
+            // allowUpdating={true}
             allowDeleting={true}
           />
           <Column

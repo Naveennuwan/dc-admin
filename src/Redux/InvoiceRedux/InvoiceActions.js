@@ -39,8 +39,7 @@ export const InvoiceDetails = (Invoice) => async (dispatch) => {
     });
 
     const d = await api.InvoiceDetailsAPI(Invoice);
-
-    console.log(d);
+    
     if (d.response?.status === 500) {
       dispatch({
         type: INVOICE_DETAILS_FAIL,

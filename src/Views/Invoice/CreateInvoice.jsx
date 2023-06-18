@@ -15,6 +15,7 @@ import {
   InvoiceRegister,
   InvoiceDetails,
 } from "../../Redux/InvoiceRedux/InvoiceActions";
+import { Error } from "../../Components/ToastNotification";
 
 const style = {
   position: "absolute",
@@ -37,7 +38,11 @@ const CreateInvoice = ({ items, setItems }) => {
   const [patient, setPatient] = useState(0);
 
   const { Patient } = useSelector((state) => state.Patient);
-  const { total, discount } = useSelector((state) => state.InvoiceDetils);
+  const { total, discount, error } = useSelector((state) => state.InvoiceDetils);
+
+  if(error){
+    Error(error);
+  }
 
   const user = JSON.parse(localStorage.getItem("userInfo"));
 

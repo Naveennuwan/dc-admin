@@ -1,9 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Paper from "@mui/material/Paper";
 import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
-import { styled } from "@mui/material/styles";
 import Button from "@mui/material/Button";
 import "./template.css";
 import { SetRoute } from "../../Redux/RouteRedux/RouteActions";
@@ -48,11 +46,45 @@ function Templates({ items, setItems }) {
     (state) => state.TreatementActive
   );
 
+  const renderTreatments = () => {
+    const renderedTreatments = [];
+
+    for (let i = 0; i < TreatementType.length; i++) {
+      const type = TreatementType[i];
+      const filteredTreatments = Treatement.filter(
+        (tt) => tt.template_type.id === type.id
+      );
+
+      const buttons = filteredTreatments.map((route) => (
+        <Button
+          key={route.id}
+          variant="outlined"
+          defaultValue={route}
+          onClick={() => AddItem(route)}
+          sx={{ m: 0.5, fontSize: "1rem" }}
+        >
+          {route.template_name}
+        </Button>
+      ));
+
+      renderedTreatments.push(
+        <div key={type.id}>
+          <b>{type.template_type}</b>
+          <div className="box">
+            <div className="button-container">{buttons}</div>
+          </div>
+        </div>
+      );
+    }
+
+    return renderedTreatments;
+  };
+
   useEffect(() => {
     dispatch(TreatementActiveList());
     dispatch(TreatementTypeList());
     dispatch(SetRoute("Create Invoice"));
-  }, [dispatch, loading_treatements]);
+  }, [dispatch]);
 
   return (
     <div className="container">
@@ -67,30 +99,7 @@ function Templates({ items, setItems }) {
           <CircularProgress />
         </Box>
       ) : (
-        <>
-          {TreatementType.map((type) => (
-            <div key={type.id}>
-              <b>{type.template_type}</b>
-              <div className="box">
-                <div className="button-container">
-                  {Treatement.filter(
-                    (tt) => tt.template_type_id === type.id
-                  ).map((route) => (
-                    <Button
-                      key={route.id}
-                      variant="outlined"
-                      defaultValue={route}
-                      onClick={() => AddItem(route)}
-                      sx={{ m: 0.5, fontSize: "1rem" }}
-                    >
-                      {route.template_name}
-                    </Button>
-                  ))}
-                </div>
-              </div>
-            </div>
-          ))}
-        </>
+        <>{renderTreatments()}</>
       )}
     </div>
   );

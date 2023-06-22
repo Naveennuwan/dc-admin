@@ -47,6 +47,7 @@ import {
 import {
   TreatementListReducer,
   TreatementActiveListReducer,
+  TreatementDetailsReducer,
   TreatementRegisterReducer,
   TreatementUpdateReducer,
   TreatementDeleteReducer,
@@ -109,6 +110,7 @@ const reducer = combineReducers({
 
   //Patient
   Treatement: TreatementListReducer,
+  TreatementDetails:TreatementDetailsReducer,
   TreatementActive: TreatementActiveListReducer,
   TreatementRegister: TreatementRegisterReducer,
   TreatementUpdate: TreatementUpdateReducer,

@@ -11,6 +11,8 @@ import { DrugActiveList } from "../../Redux/DrugRedux/DrugActions";
 import {
   TreatementRegister,
   TreatementActiveList,
+  TreatementDetails,
+  TreatementUpdate,
 } from "../../Redux/TreatementRedux/TreatementActions";
 
 const CreateNew = ({ templateId }) => {
@@ -25,11 +27,16 @@ const CreateNew = ({ templateId }) => {
   const [body, setBody] = useState([]);
 
   const { Drug } = useSelector((state) => state.DrugActive);
-  
-  const { TreatementType } = useSelector((state) => state.TreatementType);
 
-  const { success: regsuccess } = useSelector(
+  const { TreatementType } = useSelector((state) => state.TreatementType);
+  const { treatement } = useSelector((state) => state.TreatementDetails);
+
+  const { loading: regloading, success: regsuccess } = useSelector(
     (state) => state.TreatementRegister
+  );
+
+  const { loading: updateloading, success: updatesuccess } = useSelector(
+    (state) => state.TreatementUpdate
   );
 
   const handleChange = () => {
@@ -64,8 +71,12 @@ const CreateNew = ({ templateId }) => {
         template_type_id: templateType,
         template_bodies: body,
       };
-      console.log(temp);
-      await dispatch(TreatementRegister(temp));
+
+      if (templateId) {
+        await dispatch(TreatementUpdate(templateId, temp));
+      } else {
+        await dispatch(TreatementRegister(temp));
+      }
 
       setTemplateName("");
       setTemplateType("");
@@ -74,20 +85,54 @@ const CreateNew = ({ templateId }) => {
   }
 
   useEffect(() => {
-    if (templateId) {
-      console.log(templateId);
-    }
     dispatch(TreatementActiveList());
     dispatch(DrugActiveList());
-  }, [dispatch, regsuccess, templateId]);
+  }, [dispatch, regsuccess, updatesuccess]);
+
+  useEffect(() => {
+    if (templateId && templateId !== treatement?.id) {
+      console.log(templateId);
+      dispatch(DrugActiveList());
+      dispatch(TreatementDetails(templateId));
+    }
+  }, [templateId, treatement?.id]);
+
+  useEffect(() => {
+    if (treatement) {
+      setTemplateName(treatement.template_name);
+      setTemplateType(treatement.template_type_id);
+
+      const bodies = treatement.template_bodies;
+
+      if (bodies) {
+        const updatedBody = bodies.map((t_body) => {
+          const id = t_body.product_id;
+          const qty = t_body.quantity;
+
+          const p = Drug.find((item) => item.id === parseInt(id));
+
+          if (p) {
+            return {
+              ...body,
+              product_id: id,
+              name: p.product,
+              quantity: qty,
+            };
+          }
+          return body;
+        });
+        setBody(updatedBody);
+      }
+    }
+  }, [treatement]);
+
   return (
     <>
       <div>
         <h3 style={{ textAlign: "center" }}>Create New</h3>
         <FormControl sx={{ mr: 2, minWidth: 200, maxWidth: 200 }}>
+          Template Name
           <TextField
-            id="outlined-basic"
-            label="Template Name"
             value={templateName}
             onChange={(e) => {
               setTemplateName(e.target.value);
@@ -96,11 +141,9 @@ const CreateNew = ({ templateId }) => {
           />
         </FormControl>
         <FormControl sx={{ mr: 2, minWidth: 200, maxWidth: 200 }}>
-          <InputLabel id="demo-simple-select-helper-label">Category</InputLabel>
+          Category
           <Select
-            labelId="demo-simple-select-label"
             id="demo-simple-select"
-            label="Category"
             value={templateType}
             onChange={(e) => {
               setTemplateType(e.target.value);
@@ -118,16 +161,8 @@ const CreateNew = ({ templateId }) => {
       <br />
       <div>
         <FormControl sx={{ mr: 2, minWidth: 200, maxWidth: 200 }}>
-          <InputLabel id="demo-simple-select-helper-label">
-            Select Drug
-          </InputLabel>
-          <Select
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
-            fullWidth
-            value={drugId}
-            label="Price"
-          >
+          Select Drug
+          <Select fullWidth value={drugId} label="Price">
             {Drug.map((d) => (
               <MenuItem
                 key={d.id}
@@ -143,9 +178,8 @@ const CreateNew = ({ templateId }) => {
           </Select>
         </FormControl>
         <FormControl sx={{ mr: 2, minWidth: 100, maxWidth: 100 }}>
+          Quantity
           <TextField
-            id="outlined-basic"
-            label="Quantity"
             value={drugQuantity}
             onChange={(event) => setDrugQuantity(event.target.value)}
             variant="outlined"
@@ -162,19 +196,7 @@ const CreateNew = ({ templateId }) => {
       </div>
       <br />
       <div style={{ display: "flex" }}>
-        <DataGrid
-          dataSource={body}
-          keyExpr="product_id"
-          showBorders={true}
-          className="datagrid__max h-auto"
-          allowColumnReordering={true}
-          allowColumnResizing={true}
-          showColumnLines={true}
-          showRowLines={true}
-          repaintChangesOnly={true}
-          useIcons={true}
-          rowAlternationEnabled={true}
-        >
+        <DataGrid dataSource={body} keyExpr="product_id" showBorders={true}>
           <Paging enabled={false} />
           <Editing mode="popup" allowDeleting={true} />
           <Column
@@ -198,7 +220,11 @@ const CreateNew = ({ templateId }) => {
           onClick={SaveTemplate}
           sx={{ mt: 2, minWidth: 150, maxWidth: 150 }}
         >
-          Save Template
+          {updateloading === true || regloading === true
+            ? "Loading..."
+            : templateId
+            ? "Update Template"
+            : "Save Template"}
         </Button>
       </div>
     </>

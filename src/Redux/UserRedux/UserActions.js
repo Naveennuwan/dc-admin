@@ -14,14 +14,15 @@ export const login = (loginData) => async (dispatch) => {
 
     const res = await api.userLoginAPI(loginData);
 
-    console.log(res)
-
     if (res.status === 200) {
       dispatch({
         type: USER_LOGIN_SUCCESS,
         payload: res.data,
       });
     }else if(res.response.status === 422){
+      dispatch({
+        type: USER_LOGIN_FAIL,
+      });
       Error("Please Check Your Login Cridential");
     }
   } catch (error) {

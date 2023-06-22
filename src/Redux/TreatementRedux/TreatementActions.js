@@ -12,6 +12,9 @@ import {
   TREATEMENT_DELETE_REQUEST,
   TREATEMENT_DELETE_SUCCESS,
   TREATEMENT_DELETE_FAIL,
+  TREATEMENT_DETAILS_REQUEST,
+  TREATEMENT_DETAILS_SUCCESS,
+  TREATEMENT_DETAILS_FAIL,
   TREATEMENT_UPDATE_REQUEST,
   TREATEMENT_UPDATE_SUCCESS,
 } from "./TreatementConstants";
@@ -51,6 +54,27 @@ export const TreatementActiveList = () => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: TREATEMENT_LIST_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
+
+export const TreatementDetails = (id) => async (dispatch) => {
+  try {
+    dispatch({ type: TREATEMENT_DETAILS_REQUEST });
+
+    const  {data}   = await api.TreatementDetailsAPI(id);
+
+    dispatch({
+      type: TREATEMENT_DETAILS_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: TREATEMENT_DETAILS_FAIL,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message

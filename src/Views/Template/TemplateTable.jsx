@@ -11,6 +11,7 @@ import {
   TreatementActiveList,
   TreatementDelete,
 } from "../../Redux/TreatementRedux/TreatementActions";
+import Button from "@mui/material/Button";
 
 const TemplateTable = ({ setTemplateId }) => {
   const dispatch = useDispatch();
@@ -29,10 +30,14 @@ const TemplateTable = ({ setTemplateId }) => {
     remove: async (key) => {
       await dispatch(TreatementDelete(key));
     },
-    update: async (key) => {
-      setTemplateId(key);
-    },
+    // update: async (key) => {
+    //   setTemplateId(key);
+    // },
   });
+
+  const editHandler = (e) => {
+    setTemplateId(e.data.id);
+  };
 
   useEffect(() => {
     dispatch(TreatementActiveList());
@@ -45,23 +50,10 @@ const TemplateTable = ({ setTemplateId }) => {
           dataSource={dataSource}
           keyExpr="id"
           showBorders={true}
-          className="datagrid__max h-auto"
-          allowColumnReordering={true}
-          allowColumnResizing={true}
-          showColumnLines={true}
-          showRowLines={true}
-          repaintChangesOnly={true}
-          useIcons={true}
-          rowAlternationEnabled={true}
+          onEditingStart={editHandler}
         >
           <Paging enabled={false} />
-          <Editing
-            // refreshMode="reshape"
-            // mode="popup"
-            // useIcons={false}
-            // allowUpdating={true}
-            allowDeleting={true}
-          />
+          <Editing allowUpdating={false} allowDeleting={true} />
           <Column
             dataField="id"
             caption="No."
@@ -87,6 +79,15 @@ const TemplateTable = ({ setTemplateId }) => {
               displayExpr="template_type"
             />
           </Column>
+          <Column
+            caption="Edit"
+            width={70}
+            cellRender={({ data }) => (
+              <Button type="button" onClick={() => editHandler({ data })}>
+                Edit
+              </Button>
+            )}
+          />
         </DataGrid>
       </div>
     </>

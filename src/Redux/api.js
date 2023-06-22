@@ -1,24 +1,24 @@
 import axios from "axios";
 
-const baseUrl = "https://api.dental-clinic.lk/api";
-// const baseUrl = "http://127.0.0.1:8000/api";
+// const baseUrl = "https://api.dental-clinic.lk/api";
+const baseUrl = "http://127.0.0.1:8000/api";
 
-const sms = "https://www.textit.biz";
+// const sms = "https://www.textit.biz";
 
 const API = axios.create({
   baseURL: baseUrl,
 });
 
-const SMSAPI = axios.create({
-  baseURL: sms,
-});
+// const SMSAPI = axios.create({
+//   baseURL: sms,
+// });
 
-SMSAPI.interceptors.request.use((req) => {
-  req.headers.Accept = `application/json`;
-  req.headers.ContentType = `application/json`;
+// SMSAPI.interceptors.request.use((req) => {
+//   req.headers.Accept = `application/json`;
+//   req.headers.ContentType = `application/json`;
 
-  return req;
-});
+//   return req;
+// });
 
 API.interceptors.request.use((req) => {
   if (localStorage.getItem("userInfo")) {
@@ -162,7 +162,7 @@ export const TreatementAPI = () => API.get("/template");
 
 export const TreatementAllAPI = () => API.get(`/template/all/${centerid}`);
 
-export const TreatementDetailsAPI = (id) => API.get(`/template/${id}`);
+export const TreatementDetailsAPI = (id) => API.get(`/template-by-id/${id}`);
 
 export const TreatementRegisterAPI = (treatement) =>
   API.post("/template", treatement);
@@ -194,7 +194,10 @@ export const InvoiceRegisterAPI = (invoice) => API.post("/invoice", invoice);
 export const InvoiceDetailsAPI = (invoice) =>
   API.post("/invoice/calculate", invoice);
 
-const id = "94705742090";
-const pw = "5713";
-export const textMsgAPI = (text) =>
-  SMSAPI.get(`/sendmsg?id=${id}&pw=${pw}&to=0705742090&text=${text}`);
+  //-------------------------------------------------------------
+// SMS
+
+// const id = "94705742090";
+// const pw = "5713";
+// export const textMsgAPI = (text) =>
+//   SMSAPI.get(`/sendmsg?id=${id}&pw=${pw}&to=0705742090&text=${text}`);

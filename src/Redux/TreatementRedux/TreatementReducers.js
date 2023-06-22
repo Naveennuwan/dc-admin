@@ -12,6 +12,9 @@ import {
   TREATEMENT_DELETE_REQUEST,
   TREATEMENT_DELETE_SUCCESS,
   TREATEMENT_DELETE_FAIL,
+  TREATEMENT_DETAILS_REQUEST,
+  TREATEMENT_DETAILS_SUCCESS,
+  TREATEMENT_DETAILS_FAIL,
   TREATEMENT_UPDATE_REQUEST,
   TREATEMENT_UPDATE_SUCCESS,
   TREATEMENT_UPDATE_FAIL,
@@ -31,13 +34,32 @@ export const TreatementListReducer = (state = { Treatement: [] }, action) => {
   }
 };
 
-export const TreatementActiveListReducer = (state = { Treatement: [] }, action) => {
+export const TreatementActiveListReducer = (
+  state = { Treatement: [] },
+  action
+) => {
   switch (action.type) {
     case TREATEMENT_LIST_REQUEST:
       return { loading: true, Treatement: [] };
     case TREATEMENT_LIST_SUCCESS:
       return { loading: false, Treatement: action.payload };
     case TREATEMENT_LIST_FAIL:
+      return { loading: false, error: action.payload };
+    default:
+      return state;
+  }
+};
+
+export const TreatementDetailsReducer = (
+  state = { treatement: {} },
+  action
+) => {
+  switch (action.type) {
+    case TREATEMENT_DETAILS_REQUEST:
+      return { loading: true, ...state };
+    case TREATEMENT_DETAILS_SUCCESS:
+      return { loading: false, treatement: action.payload };
+    case TREATEMENT_DETAILS_FAIL:
       return { loading: false, error: action.payload };
     default:
       return state;
@@ -75,10 +97,7 @@ export const TreatementDeleteReducer = (state = {}, action) => {
   }
 };
 
-export const TreatementUpdateReducer = (
-  state = { Treatement: {} },
-  action
-) => {
+export const TreatementUpdateReducer = (state = { Treatement: {} }, action) => {
   switch (action.type) {
     case TREATEMENT_UPDATE_REQUEST:
       return { loading: true };

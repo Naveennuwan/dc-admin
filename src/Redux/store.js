@@ -37,6 +37,13 @@ import {
   SupplierDeleteReducer,
 } from "./SupplierRedux/SupplierReducers";
 import {
+  DiseaseReducer,
+  DiseaseActiveReducer,
+  DiseaseRegisterReducer,
+  DiseaseUpdateReducer,
+  DiseaseDeleteReducer,
+} from "./DiseaseRedux/DiseaseReducers";
+import {
   DrugReducer,
   DrugActiveReducer,
   DrugRegisterReducer,
@@ -77,13 +84,6 @@ const reducer = combineReducers({
   PatientType: PatientTypeReducer,
   TreatementType: TreatementTypeReducer,
 
-  //Brand
-  Brand: BrandReducer,
-  BrandActive: BrandActiveReducer,
-  BrandRegister: BrandRegisterReducer,
-  BrandUpdate: BrandUpdateReducer,
-  BrandDelete: BrandDeleteReducer,
-
   //Alergy
   Alergy: AlergyReducer,
   AlergyActive: AlergyActiveReducer,
@@ -91,12 +91,26 @@ const reducer = combineReducers({
   AlergyUpdate: AlergyUpdateReducer,
   AlergyDelete: AlergyDeleteReducer,
 
+  //Brand
+  Brand: BrandReducer,
+  BrandActive: BrandActiveReducer,
+  BrandRegister: BrandRegisterReducer,
+  BrandUpdate: BrandUpdateReducer,
+  BrandDelete: BrandDeleteReducer,
+
   //Category
   Category: CategoryReducer,
   CategoryActive: CategoryActiveReducer,
   CategoryRegister: CategoryRegisterReducer,
   CategoryUpdate: CategoryUpdateReducer,
   CategoryDelete: CategoryDeleteReducer,
+
+  //Disease
+  Disease: DiseaseReducer,
+  DiseaseActive: DiseaseActiveReducer,
+  DiseaseRegister: DiseaseRegisterReducer,
+  DiseaseUpdate: DiseaseUpdateReducer,
+  DiseaseDelete: DiseaseDeleteReducer,
 
   //Supplier
   Supplier: SupplierReducer,

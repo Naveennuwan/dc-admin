@@ -22,7 +22,8 @@ function Master() {
     { id: 2, name: "Categories", path: "category" },
     { id: 3, name: "Suppliers", path: "supplier" },
     { id: 4, name: "Drugs", path: "drug" },
-    { id: 4, name: "Alergy", path: "alergy" },
+    { id: 5, name: "Alergy", path: "alergy" },
+    { id: 6, name: "Disease", path: "disease" },
   ];
   const adminRoutes = [
     { id: 1, name: "Doctors", path: "doctors" },

@@ -76,7 +76,7 @@ export const BrandUpdateAPI = (id, brand) => API.put(`/brand/${id}`, brand);
 export const BrandDeleteAPI = (id) => API.delete(`/brand/${id}`);
 
 //-------------------------------------------------------------
-// Brand
+// Alergy
 
 export const AlergyAPI = () => API.get("/alergy");
 
@@ -106,6 +106,23 @@ export const CategoryUpdateAPI = (id, category) =>
   API.put(`/category/${id}`, category);
 
 export const CategoryDeleteAPI = (id) => API.delete(`/category/${id}`);
+
+//-------------------------------------------------------------
+// Disease
+
+export const DiseaseAPI = () => API.get("/disease");
+
+export const DiseaseAllAPI = () => API.get("/disease/all");
+
+export const DiseaseDetailsAPI = (id) => API.get(`/disease/${id}`);
+
+export const DiseaseRegisterAPI = (Disease) =>
+  API.post("/disease", Disease);
+
+export const DiseaseUpdateAPI = (id, Disease) =>
+  API.put(`/disease/${id}`, Disease);
+
+export const DiseaseDeleteAPI = (id) => API.delete(`/disease/${id}`);
 
 //-------------------------------------------------------------
 // supplier

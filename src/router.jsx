@@ -5,6 +5,7 @@ import HomePage from "./Views/HomePage";
 import Master from "./Views/CommonMasters/index";
 import Alergy from "./Views/CommonMasters/Alergy";
 import Brand from "./Views/CommonMasters/Brand";
+import Disease from "./Views/CommonMasters/Disease";
 import Supplier from "./Views/CommonMasters/Supplier";
 import Category from "./Views/CommonMasters/Category";
 import Doctor from "./Views/CommonMasters/Doctor";
@@ -36,6 +37,7 @@ const router = createBrowserRouter([
       { path: "/masterdata", element: <MasterData /> },
       { path: "/alergy", element: <Alergy /> },
       { path: "/brand", element: <Brand /> },
+      { path: "/disease", element: <Disease /> },
       { path: "/supplier", element: <Supplier /> },
       { path: "/category", element: <Category /> },
       { path: "/doctor", element: <Doctor /> },

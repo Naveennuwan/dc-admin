@@ -5,6 +5,7 @@ import DataGrid, {
   Editing,
   Paging,
   Lookup,
+  MasterDetail,
 } from "devextreme-react/data-grid";
 import CustomStore from "devextreme/data/custom_store";
 import {
@@ -12,6 +13,7 @@ import {
   TreatementDelete,
 } from "../../Redux/TreatementRedux/TreatementActions";
 import Button from "@mui/material/Button";
+import MasterDetailGrid from './MasterDetailGrid.jsx';
 
 const TemplateTable = ({ setTemplateId }) => {
   const dispatch = useDispatch();
@@ -30,9 +32,6 @@ const TemplateTable = ({ setTemplateId }) => {
     remove: async (key) => {
       await dispatch(TreatementDelete(key));
     },
-    // update: async (key) => {
-    //   setTemplateId(key);
-    // },
   });
 
   const editHandler = (e) => {
@@ -50,8 +49,14 @@ const TemplateTable = ({ setTemplateId }) => {
           dataSource={dataSource}
           keyExpr="id"
           showBorders={true}
+          showRowLines={true}
+          showColumnLines={true}
           onEditingStart={editHandler}
         >
+        <MasterDetail
+          enabled={true}
+          component={MasterDetailGrid}
+        />
           <Paging enabled={false} />
           <Editing allowUpdating={false} allowDeleting={true} />
           <Column

@@ -196,7 +196,13 @@ const CreateNew = ({ templateId }) => {
       </div>
       <br />
       <div style={{ display: "flex" }}>
-        <DataGrid dataSource={body} keyExpr="product_id" showBorders={true}>
+        <DataGrid
+          dataSource={body}
+          keyExpr="product_id"
+          showBorders={true}
+          showRowLines={true}
+          showColumnLines={true}
+        >
           <Paging enabled={false} />
           <Editing mode="popup" allowDeleting={true} />
           <Column

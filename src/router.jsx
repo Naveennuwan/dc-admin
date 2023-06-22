@@ -3,6 +3,7 @@ import DefaultLayout from "./Components/DefaultLayout";
 import GuestLayout from "./Components/GuestLayout";
 import HomePage from "./Views/HomePage";
 import Master from "./Views/CommonMasters/index";
+import Alergy from "./Views/CommonMasters/Alergy";
 import Brand from "./Views/CommonMasters/Brand";
 import Supplier from "./Views/CommonMasters/Supplier";
 import Category from "./Views/CommonMasters/Category";
@@ -33,6 +34,7 @@ const router = createBrowserRouter([
       { path: "/dashboard", element: <HomePage /> },
       { path: "/master", element: <Master /> },
       { path: "/masterdata", element: <MasterData /> },
+      { path: "/alergy", element: <Alergy /> },
       { path: "/brand", element: <Brand /> },
       { path: "/supplier", element: <Supplier /> },
       { path: "/category", element: <Category /> },

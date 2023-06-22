@@ -16,6 +16,13 @@ import {
   BrandDeleteReducer,
 } from "./BrandRedux/BrandReducers";
 import {
+  AlergyReducer,
+  AlergyActiveReducer,
+  AlergyRegisterReducer,
+  AlergyUpdateReducer,
+  AlergyDeleteReducer,
+} from "./AlergyRedux/AlergyReducers";
+import {
   CategoryReducer,
   CategoryActiveReducer,
   CategoryRegisterReducer,
@@ -76,6 +83,13 @@ const reducer = combineReducers({
   BrandRegister: BrandRegisterReducer,
   BrandUpdate: BrandUpdateReducer,
   BrandDelete: BrandDeleteReducer,
+
+  //Alergy
+  Alergy: AlergyReducer,
+  AlergyActive: AlergyActiveReducer,
+  AlergyRegister: AlergyRegisterReducer,
+  AlergyUpdate: AlergyUpdateReducer,
+  AlergyDelete: AlergyDeleteReducer,
 
   //Category
   Category: CategoryReducer,

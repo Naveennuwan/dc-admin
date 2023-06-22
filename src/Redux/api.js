@@ -76,6 +76,21 @@ export const BrandUpdateAPI = (id, brand) => API.put(`/brand/${id}`, brand);
 export const BrandDeleteAPI = (id) => API.delete(`/brand/${id}`);
 
 //-------------------------------------------------------------
+// Brand
+
+export const AlergyAPI = () => API.get("/alergy");
+
+export const AlergyAllAPI = () => API.get("/alergy/all");
+
+export const AlergyDetailsAPI = (id) => API.get(`/alergy/${id}`);
+
+export const AlergyRegisterAPI = (alergy) => API.post("/alergy", alergy);
+
+export const AlergyUpdateAPI = (id, alergy) => API.put(`/alergy/${id}`, alergy);
+
+export const AlergyDeleteAPI = (id) => API.delete(`/alergy/${id}`);
+
+//-------------------------------------------------------------
 // Catergory
 
 export const CategoryAPI = () => API.get("/category");

@@ -85,16 +85,7 @@ function Patient() {
 
   const handleDisplayClick = async (data) => {
     await dispatch(
-      PatientUpdate(data.id, {
-        patient_name: data.patient_name,
-        patient_incharge: data.patient_incharge,
-        patient_address: data.patient_address,
-        patient_contact_no: data.patient_contact_no,
-        patient_age: data.patient_age,
-        patient_gender: data.patient_gender,
-        patient_type_id: data.patient_type_id,
-        is_active: !data.is_active,
-      })
+      PatientUpdate(data.id, { ...data, is_active: !data.is_active })
     );
   };
 
@@ -115,9 +106,13 @@ function Patient() {
   const [allergies, setAllergies] = useState([]);
   const [allergy, setAllergy] = useState([]);
 
-  const AllergyProcessComponents = (props) => {
+  const AllergyProcessComponents = ({data}) => {
+
+    const ds = data.data.alergies
+    console.log(ds)
+    console.log(data)
     const onValueChanged = (e) => {
-      props.data.setValue(e.value);
+      data.setValue(ds);
 
       setDsAllergy(e.value);
 
@@ -129,7 +124,7 @@ function Patient() {
     };
 
     const onSelectionChanged = () => {
-      props.data.component.updateDimensions();
+      data.component.updateDimensions();
     };
 
     return (
@@ -215,7 +210,7 @@ function Patient() {
                 <Item dataField="patient_name" />
                 <Item dataField="patient_incharge" />
                 <Item dataField="patient_address" />
-                <Item dataField="AllergyProcess" />
+                <Item dataField="alergies" />
                 <Item dataField="patient_contact_no" />
                 <Item dataField="patient_age" />
                 <Item dataField="patient_gender" />
@@ -244,7 +239,7 @@ function Patient() {
             width="maxWidth"
           />
           <Column
-            dataField="AllergyProcess"
+            dataField="alergies"
             caption="Allergies"
             allowSorting={false}
             editCellComponent={AllergyProcessComponents}
@@ -279,19 +274,25 @@ function Patient() {
             dataType="string"
             caption="Gender"
             width="maxWidth"
-            >
-              <Lookup
-                dataSource={gender}
-                valueExpr="gender"
-                displayExpr="gender"
-              />
-            </Column>
+          >
+            <Lookup
+              dataSource={gender}
+              valueExpr="gender"
+              displayExpr="gender"
+            />
+          </Column>
           <Column
             dataField="patient_type_id"
             dataType="string"
             caption="Type"
             width="maxWidth"
-          />
+          >
+            <Lookup
+              dataSource={PatientType}
+              valueExpr="id"
+              displayExpr="patient_type"
+            />
+          </Column>
           <Column
             dataField="is_active"
             dataType="boolean"

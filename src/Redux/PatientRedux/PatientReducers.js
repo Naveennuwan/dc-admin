@@ -11,6 +11,9 @@ import {
   PATIANT_DELETE_REQUEST,
   PATIANT_DELETE_SUCCESS,
   PATIANT_DELETE_FAIL,
+  PATIANT_DETAILS_REQUEST,
+  PATIANT_DETAILS_SUCCESS,
+  PATIANT_DETAILS_FAIL,
   PATIANT_UPDATE_REQUEST,
   PATIANT_UPDATE_SUCCESS,
   PATIANT_UPDATE_FAIL,
@@ -37,6 +40,19 @@ export const PatientActiveReducer = (state = { Patient: [] }, action) => {
     case PATIANT_LIST_SUCCESS:
       return { loading: false, Patient: action.payload };
     case PATIANT_LIST_FAIL:
+      return { loading: false, error: action.payload };
+    default:
+      return state;
+  }
+};
+
+export const PatientDetailsReducer = (state = { Patient: {} }, action) => {
+  switch (action.type) {
+    case PATIANT_DETAILS_REQUEST:
+      return { loading: true, ...state };
+    case PATIANT_DETAILS_SUCCESS:
+      return { loading: false, Patient: action.payload };
+    case PATIANT_DETAILS_FAIL:
       return { loading: false, error: action.payload };
     default:
       return state;

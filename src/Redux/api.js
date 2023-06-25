@@ -116,8 +116,7 @@ export const DiseaseAllAPI = () => API.get("/disease/all");
 
 export const DiseaseDetailsAPI = (id) => API.get(`/disease/${id}`);
 
-export const DiseaseRegisterAPI = (Disease) =>
-  API.post("/disease", Disease);
+export const DiseaseRegisterAPI = (Disease) => API.post("/disease", Disease);
 
 export const DiseaseUpdateAPI = (id, Disease) =>
   API.put(`/disease/${id}`, Disease);
@@ -222,11 +221,34 @@ export const MasterUpdateAPI = (id, master) => API.put(`/master/${id}`, master);
 // Invoice
 
 export const InvoiceRegisterAPI = (invoice) => API.post("/invoice", invoice);
+export const InvoiceAPI = (id) => API.get(`/invoice/${id}`);
 
 export const InvoiceDetailsAPI = (invoice) =>
   API.post("/invoice/calculate", invoice);
 
-  //-------------------------------------------------------------
+export const InvoicePDFbyIdAPI = async (id) => {
+  axios
+    .get(`${baseUrl}/invoice/${id}`, {
+      headers: {
+        "Cache-Control": "no-cache",
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${
+          JSON.parse(localStorage.getItem("userInfo")).token
+        }`,
+      },
+      responseType: "blob",
+    })
+    .then((response) => {
+      const file = window.URL.createObjectURL(response.data);
+      let tab = window.open();
+      tab.location.href = file;
+    })
+    .catch((error) => {
+      console.log("Error fetching invoice PDF:", error);
+    });
+};
+
+//-------------------------------------------------------------
 // SMS
 
 // const id = "94705742090";

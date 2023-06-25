@@ -11,6 +11,9 @@ import {
   PATIANT_DELETE_REQUEST,
   PATIANT_DELETE_SUCCESS,
   PATIANT_DELETE_FAIL,
+  PATIANT_DETAILS_REQUEST,
+  PATIANT_DETAILS_SUCCESS,
+  PATIANT_DETAILS_FAIL,
   PATIANT_UPDATE_REQUEST,
   PATIANT_UPDATE_SUCCESS,
   PATIANT_UPDATE_FAIL,
@@ -52,6 +55,27 @@ export const PatientAllLists = () => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: PATIANT_LIST_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
+
+export const PatientDetails = (id) => async (dispatch) => {
+  try {
+    dispatch({ type: PATIANT_DETAILS_REQUEST });
+
+    const { data } = await api.PatientDetailsAPI(id);
+
+    dispatch({
+      type: PATIANT_DETAILS_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: PATIANT_DETAILS_FAIL,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message

@@ -11,7 +11,9 @@ import Category from "./Views/CommonMasters/Category";
 import Doctor from "./Views/CommonMasters/Doctor";
 import Drugs from "./Views/CommonMasters/Drugs";
 import MasterData from "./Views/CommonMasters/MasterData";
+import PatiantIndex from "./Views/Patiant/index";
 import Patiant from "./Views/Patiant/Patiant";
+import CreatePatient from "./Views/Patiant/CreatePatient";
 import History from "./Views/Patiant/History";
 import Invoice from "./Views/Invoice/Invoice";
 import Template from "./Views/Template/Template";
@@ -43,17 +45,17 @@ const router = createBrowserRouter([
       { path: "/doctor", element: <Doctor /> },
       { path: "/drug", element: <Drugs /> },
       { path: "/invoice", element: <Invoice /> },
-      { path: "/patiant", element: <Patiant /> },
-      { path: "/history/:id", element: <History /> },
+      { path: "/patiant", element: <PatiantIndex /> },
+      { path: "/view_patiant", element: <Patiant /> },
+      { path: "/create_patiant", element: <CreatePatient /> },
+      { path: "/create_patiant/:id", element: <CreatePatient /> },
+      { path: "/patiant_history", element: <History /> },
+      { path: "/patiant_history/:id", element: <History /> },
       { path: "/template", element: <Template /> },
       { path: "/sms", element: <SMS /> },
       { path: "/stock", element: <Stock /> },
       { path: "/image", element: <Image /> },
     ],
-  },
-  {
-    // path: "/survey/public/:slug",
-    // element: <SurveyPublicView />,
   },
 ]);
 

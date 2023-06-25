@@ -16,6 +16,8 @@ export const InvoiceRegister = (Invoice) => async (dispatch) => {
     });
 
     const { data } = await api.InvoiceRegisterAPI(Invoice);
+    
+    api.InvoicePDFbyIdAPI(String(data.id));
 
     dispatch({
       type: INVOICE_REGISTER_SUCCESS,

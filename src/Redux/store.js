@@ -54,6 +54,7 @@ import { DoctorReducer } from "./DoctorRedux/DoctorReducers";
 import {
   PatientReducer,
   PatientActiveReducer,
+  PatientDetailsReducer,
   PatientRegisterReducer,
   PatientUpdateReducer,
   PatientDeleteReducer,
@@ -132,13 +133,14 @@ const reducer = combineReducers({
   //Patient
   Patient: PatientReducer,
   PatientActive: PatientActiveReducer,
+  PatientDetails:PatientDetailsReducer,
   PatientRegister: PatientRegisterReducer,
   PatientUpdate: PatientUpdateReducer,
   PatientDelete: PatientDeleteReducer,
 
   //Patient
   Treatement: TreatementListReducer,
-  TreatementDetails:TreatementDetailsReducer,
+  TreatementDetails: TreatementDetailsReducer,
   TreatementActive: TreatementActiveListReducer,
   TreatementRegister: TreatementRegisterReducer,
   TreatementUpdate: TreatementUpdateReducer,

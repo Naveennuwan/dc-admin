@@ -16,6 +16,7 @@ import {
   InvoiceDetails,
 } from "../../Redux/InvoiceRedux/InvoiceActions";
 import { Error } from "../../Components/ToastNotification";
+import { InvoicePDFbyIdAPI } from "../../Redux/api.js";
 
 const style = {
   position: "absolute",
@@ -38,9 +39,14 @@ const CreateInvoice = ({ items, setItems }) => {
   const [patient, setPatient] = useState(0);
 
   const { Patient } = useSelector((state) => state.Patient);
-  const { total, discount, error } = useSelector((state) => state.InvoiceDetils);
+  const { Loading, success, Invoice } = useSelector(
+    (state) => state.InvoiceRegister
+  );
+  const { total, discount, error } = useSelector(
+    (state) => state.InvoiceDetils
+  );
 
-  if(error){
+  if (error) {
     Error(error);
   }
 
@@ -65,13 +71,19 @@ const CreateInvoice = ({ items, setItems }) => {
   };
 
   const createInvoice = async () => {
-    await dispatch(
-      InvoiceRegister({
-        patient_Id: patient,
-        templates: items,
-        center_id: user.center,
-      })
-    );
+    if (items.length === 0) {
+      Error("Please add templates");
+    } else if (patient === 0) {
+      Error("Please add Patient");
+    } else {
+      await dispatch(
+        InvoiceRegister({
+          patient_Id: patient,
+          templates: items,
+          center_id: user.center,
+        })
+      );
+    }
     handleClose();
   };
 
@@ -84,21 +96,20 @@ const CreateInvoice = ({ items, setItems }) => {
     <>
       <Grid container sx={{ m: 1 }}>
         <Grid item xs={3}>
-          <FormControl sx={{ m: 1, minWidth: 150, maxWidth: 150 }}>
-            <InputLabel id="demo-simple-select-helper-label">
-              Patiant
-            </InputLabel>
+          <FormControl sx={{ m: 1, minWidth: 200, maxWidth: 200 }}>
+            <InputLabel id="Patiant">Patiant</InputLabel>
             <Select
-              labelId="demo-simple-select-label"
+              labelId="Patiant"
               id="demo-simple-select"
               fullWidth
+              value={patient}
               onChange={(e) => {
                 setPatient(e.target.value);
               }}
             >
               {Patient.filter((p) => p.patient_type_id === 2).map((p) => (
                 <MenuItem value={p.id} key={p.id}>
-                  {p.patient_name}
+                  {p.patient_name} - {p.patient_address}
                 </MenuItem>
               ))}
             </Select>
@@ -160,7 +171,7 @@ const CreateInvoice = ({ items, setItems }) => {
             caption="Treatement Name"
             width="maxWidth"
           />
-          
+
           <Column
             dataField="quantity"
             dataType="number"
@@ -172,7 +183,9 @@ const CreateInvoice = ({ items, setItems }) => {
 
       <p>Price: {total}</p>
       <p>Discount: {discount}</p>
-      <p>Total Value: {(total - discount) > 0 ? <>{total - discount}</> : <>{0}</>}</p>
+      <p>
+        Total Value: {total - discount > 0 ? <>{total - discount}</> : <>{0}</>}
+      </p>
     </>
   );
 };
